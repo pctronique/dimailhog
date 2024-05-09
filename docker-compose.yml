@@ -1,0 +1,16 @@
+
+services:
+    mailhog:
+        build: 
+            context: image
+            #args:
+            #    - VALUE_MAILHOG_VERSION=${VALUE_MAILHOG_VERSION}
+        container_name: test_mailhog
+        restart: always
+        tty: false
+        privileged: false
+        environment:
+            - MH_STORAGE=maildir
+            - MH_MAILDIR_PATH=/mailhog
+        ports:
+            - 8025:8025
