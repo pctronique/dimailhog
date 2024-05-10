@@ -13,7 +13,13 @@ Version 1.0.0
             <li><a href="#En-ligne-de-commande">En ligne de commande</a></li>
         </ul>
     </li>
-    <li><a href="#Test-version">Test version</a></li>
+    <li>
+        <a href="#Version">Version</a>
+        <ul>
+            <li><a href="#Modifier-les-versions">Modifier les versions</a></li>
+            <li><a href="#Dernière-version">Dernière version</a></li>
+        </ul>
+    </li>
     <li><a href="#Docker-hub">Docker hub</a></li>
   </ol>
 </details>
@@ -31,6 +37,28 @@ La version :
 
 > [!NOTE]
 > Récupérer l'image du dossier « image ».
+
+## Version
+
+### Modifier les versions
+
+Dans un fichier « docker-compose.yml » :
+
+```
+args:
+    - VALUE_MAILHOG_VERSION=v1.0.0
+```
+
+### Dernière version
+
+Pour installer la dernière version à partir du fichier :
+
+Dans un fichier « docker-compose.yml » :
+
+```
+args:
+    - VALUE_MAILHOG_VERSION=latest
+```
 
 ## Docker hub
 
