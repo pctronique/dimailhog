@@ -10,12 +10,5 @@ services:
         environment:
             - MH_STORAGE=maildir
             - MH_MAILDIR_PATH=/mailhog
-        #tty: false
-        #privileged: false
-        #environment:
-        #    - MH_STORAGE=maildir
-        volumes:
-            #- ./mailhog:/mailhog
-            - ./data:/docker-entrypoint-initdata.d/
         ports:
             - 8030:8025
