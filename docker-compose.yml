@@ -7,10 +7,15 @@ services:
             #    - VALUE_MAILHOG_VERSION=v1.0.0
         container_name: test_mailhog
         restart: always
-        tty: false
-        privileged: false
         environment:
             - MH_STORAGE=maildir
             - MH_MAILDIR_PATH=/mailhog
+        #tty: false
+        #privileged: false
+        #environment:
+        #    - MH_STORAGE=maildir
+        volumes:
+            #- ./mailhog:/mailhog
+            - ./data:/docker-entrypoint-initdata.d/
         ports:
-            - 8025:8025
+            - 8030:8025
