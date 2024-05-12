@@ -6,13 +6,7 @@ Version 1.0.0
   <summary>Table des matières</summary>
   <ol>
     <li><a href="#Présentation">Présentation</a></li>
-    <li>
-        <a href="#Import-SGBD">Import SGBD</a>
-        <ul>
-            <li><a href="#Avec-docker-compose">Avec docker compose</a></li>
-            <li><a href="#En-ligne-de-commande">En ligne de commande</a></li>
-        </ul>
-    </li>
+    <li><a href="#Import-Email">Import Email</a></ul>
     <li>
         <a href="#Version">Version</a>
         <ul>
@@ -26,9 +20,9 @@ Version 1.0.0
 
 ## Présentation
 
-Pour créer une image docker mailhog à partir du mailhog de docker.
+Pour créer une image docker mailhog qui fonctionne comme le mailhog/mailhog de docker.
 Cette image permet d'utiliser le stockage (storage) sur Windows, Linux et Mac.
-La version sur docker ne permet pas le stockage sur Linux, avec un problème de droit d'accès.
+Il permet l'import d'email par défaut.
 
 La version :
 <ul>
@@ -37,6 +31,20 @@ La version :
 
 > [!NOTE]
 > Récupérer l'image du dossier « image ».
+
+## Import Email
+
+Pour importer les emails :
+
+Créer un dossier « config/data » (par exemple) dans votre projet.
+
+Dans un fichier « docker-compose.yml » :
+```
+volumes:
+    - ./config/data:/docker-entrypoint-initdata.d:rw
+```
+
+Placer dans le dossier des fichiers "@mailhog.example".
 
 ## Version
 
@@ -66,15 +74,17 @@ Pour le transmettre sur docker hub, il serait préférable d'avoir une version f
 
 Remplacer :
 ```
-# variable environnement
-ARG VALUE_MAILHOG_VERSION
-ARG DEF_MAILHOG_VERSION=${VALUE_MAILHOG_VERSION:-"v1.0.0"}
-
 # config install nodejs
-FROM mailhog/mailhog:${DEF_MAILHOG_VERSION}
+FROM debian:bookworm-slim
+
+ARG VALUE_MHOG_VERSION
+ENV DEF_MHOG_VERSION=${VALUE_MHOG_VERSION:-"v1.0.1"}
 ```
 
 Par :
 ```
-FROM mailhog/mailhog:v1.0.0
+# config install nodejs
+FROM debian:bookworm-slim
+
+ENV DEF_MHOG_VERSION=v1.0.1
 ```
