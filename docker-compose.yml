@@ -3,8 +3,9 @@ services:
     mailhog:
         build: 
             context: image
-            #args:
+            args:
             #    - VALUE_MAILHOG_VERSION=v1.0.0
+                - VALUE_UBUNTU_VERSION=latest
         container_name: test_mailhog
         restart: always
         environment:
